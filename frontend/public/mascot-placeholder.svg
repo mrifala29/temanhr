@@ -1,0 +1,45 @@
+<svg width="400" height="400" viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background Circle -->
+  <circle cx="200" cy="200" r="180" fill="#6366F1" opacity="0.1"/>
+  
+  <!-- Character Body -->
+  <ellipse cx="200" cy="250" rx="80" ry="100" fill="#4F46E5"/>
+  
+  <!-- Character Head -->
+  <circle cx="200" cy="150" r="70" fill="#F59E0B"/>
+  
+  <!-- Eyes -->
+  <circle cx="180" cy="140" r="12" fill="white"/>
+  <circle cx="220" cy="140" r="12" fill="white"/>
+  <circle cx="183" cy="143" r="6" fill="#1F2937"/>
+  <circle cx="223" cy="143" r="6" fill="#1F2937"/>
+  
+  <!-- Smile -->
+  <path d="M 175 160 Q 200 175 225 160" stroke="#1F2937" stroke-width="4" fill="none" stroke-linecap="round"/>
+  
+  <!-- Arms -->
+  <ellipse cx="140" cy="250" rx="15" ry="60" fill="#4F46E5" transform="rotate(-30 140 250)"/>
+  <ellipse cx="260" cy="250" rx="15" ry="60" fill="#4F46E5" transform="rotate(30 260 250)"/>
+  
+  <!-- Legs -->
+  <rect x="170" y="320" width="25" height="60" rx="12" fill="#4F46E5"/>
+  <rect x="205" y="320" width="25" height="60" rx="12" fill="#4F46E5"/>
+  
+  <!-- CV Icon -->
+  <g transform="translate(100, 80)">
+    <rect x="0" y="0" width="40" height="50" rx="4" fill="white" stroke="#6366F1" stroke-width="2"/>
+    <line x1="8" y1="12" x2="32" y2="12" stroke="#6366F1" stroke-width="2"/>
+    <line x1="8" y1="20" x2="32" y2="20" stroke="#6366F1" stroke-width="2"/>
+    <line x1="8" y1="28" x2="24" y2="28" stroke="#6366F1" stroke-width="2"/>
+  </g>
+  
+  <!-- Star -->
+  <g transform="translate(260, 100)">
+    <polygon points="20,0 24,14 38,14 27,23 31,37 20,28 9,37 13,23 2,14 16,14" fill="#F59E0B"/>
+  </g>
+  
+  <!-- Text -->
+  <text x="200" y="390" font-family="Arial, sans-serif" font-size="16" fill="#6366F1" text-anchor="middle" font-weight="bold">
+    Add mascot.png to src/assets/
+  </text>
+</svg>
