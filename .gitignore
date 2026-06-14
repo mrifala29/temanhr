@@ -50,6 +50,7 @@ ai-service/ARCHITECTURE.md
 # Database backups
 *.sql.bak
 *.sql.backup
+database
 
 # API Keys and secrets (extra safety)
 **/secrets.json
