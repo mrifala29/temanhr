@@ -8,16 +8,17 @@ Platform berbasis AI untuk membantu rekruter melakukan screening CV kandidat sec
 - **[PRD.md](.kiro/specs/temanhr/PRD.md)** - Product Requirements Document dengan Input/Output/Detail Output
 - **[ERD.md](database/ERD.md)** - Entity Relationship Diagram
 
-### Backend Implementation
-- **[backend/API.md](backend/API.md)** - API endpoints dan response format
-- **[backend/ARCHITECTURE.md](backend/ARCHITECTURE.md)** - Backend system design
+### Backend (Laravel)
+- **[backend/API.md](backend/API.md)** - REST API endpoints dengan Laravel
+- **[backend/ARCHITECTURE.md](backend/ARCHITECTURE.md)** - Laravel backend system design
 
-### Frontend Implementation
-- **[frontend/API.md](frontend/API.md)** - API integration guide
-- **[frontend/ARCHITECTURE.md](frontend/ARCHITECTURE.md)** - Frontend system design
+### Frontend (Flexible Stack)
+- **[frontend/API.md](frontend/API.md)** - API integration guide dan technology options
+- **[frontend/ARCHITECTURE.md](frontend/ARCHITECTURE.md)** - Frontend design (React/Vue/Next.js) dengan mascot animations
 
-### AI Service Implementation
-- **[ai-service/ARCHITECTURE.md](ai-service/ARCHITECTURE.md)** - AI worker service design
+### AI Service (FastAPI + LangChain)
+- **[ai-service/API.md](ai-service/API.md)** - Internal service endpoints
+- **[ai-service/ARCHITECTURE.md](ai-service/ARCHITECTURE.md)** - FastAPI + LangChain + Celery service design
 
 ### Database
 - **[database/schema.sql](database/schema.sql)** - PostgreSQL schema ready for Supabase
@@ -40,9 +41,9 @@ Platform berbasis AI untuk membantu rekruter melakukan screening CV kandidat sec
 
 ```
 temanhr/
-├── frontend/              # React application
-├── backend/               # Express API server
-├── ai-service/            # CV analysis worker
+├── frontend/              # Frontend application (React/Vue/Next.js)
+├── backend/               # Laravel API server
+├── ai-service/            # FastAPI + LangChain CV analysis worker
 ├── database/              # Database schemas and ERD
 ├── .kiro/specs/temanhr/   # Product requirements
 ├── .env.example           # Environment template
@@ -52,23 +53,27 @@ temanhr/
 
 ## Tech Stack
 
-Frontend: React 18 + TypeScript + React Router + Tailwind CSS
-Backend: Node.js + Express + JWT + PostgreSQL
-AI Service: OpenAI/Claude API + Node.js/Python
+Frontend: React 18 / Vue 3 / Next.js 14+ dengan TypeScript (pilih salah satu)
+Backend: Laravel 10+ dengan JWT authentication
+AI Service: FastAPI + LangChain + Celery
 Database: PostgreSQL (Supabase)
-Storage: File system for ZIP and PDF files
+Storage: File system untuk ZIP dan PDF files
+Queue: Redis / RabbitMQ untuk Celery
+Optional: Qdrant untuk RAG (vector embeddings) - future enhancement
 
 ## Key Features
 
-- User authentication with JWT
+- User authentication dengan JWT (Laravel)
 - Job position management
-- Batch CV upload (ZIP format)
-- AI-powered CV analysis and scoring
+- Batch CV upload (ZIP format dengan PDF validation)
+- AI-powered CV analysis menggunakan LangChain chains
+- Semantic scoring (0-100) dengan status classification
 - Candidate ranking (Priority / Good to give chance)
-- Detailed analysis view with skills and gaps
+- Detailed analysis view dengan skills, gaps, dan reasoning
 - Screening history persistence
 - CV download capability
-- Row Level Security (RLS)
+- Row Level Security (RLS) di Supabase
+- Animated mascot character di UI (asset akan diberikan saat coding)
 
 ## Security
 
@@ -82,49 +87,105 @@ Storage: File system for ZIP and PDF files
 
 ## Data Flow
 
-1. User registers/logs in with JWT authentication
-2. Recruiter fills job form with position details
-3. Uploads ZIP file containing candidate CVs
-4. Backend validates ZIP and extracts PDFs
-5. Creates screening session with status "processing"
-6. Queues CV analysis job for AI worker
-7. AI worker processes each CV:
-   - Extracts text from PDF
-   - Calls AI API for analysis
-   - Scores and filters (>= 60)
-   - Saves to database
-8. Frontend polls for status updates
+1. User registers/logs in dengan JWT authentication
+2. Recruiter fills job form dengan position details
+3. Uploads ZIP file berisi candidate CVs
+4. Laravel validates ZIP dan extract PDFs
+5. Creates screening session dengan status "processing"
+6. Queues CV analysis job ke Celery
+7. AI Service (FastAPI) processes setiap CV:
+   - Extracts text dari PDF menggunakan PyPDF2
+   - Builds LangChain analysis chain
+   - Calls LLM (OpenAI/Claude) untuk analysis
+   - Parses dan validates JSON response
+   - Scores dan filters (>= 60)
+   - Saves ke PostgreSQL
+8. Frontend polls untuk status updates
 9. On completion, displays ranked candidates
-10. Recruiter can view details and download CVs
+10. Recruiter dapat view details dan download CVs
+
+## Implementation Priority
+
+MVP (Phase 1):
+- Authentication (Laravel + JWT)
+- Job form dan CV upload
+- Basic AI analysis (LangChain + OpenAI)
+- Results display dan history
+- Frontend dengan basic styling
+
+Enhancement (Phase 2):
+- Mascot character animations
+- Advanced filtering/sorting
+- Admin dashboard
+
+Future (Phase 3):
+- RAG implementation (Qdrant)
+- Redis caching
+- WebSocket real-time updates
 
 ## Implementation Guide
 
-When delegating to AI agent, provide context:
+Saat delegate tasks ke AI agent, provide context:
 
-For Backend tasks:
+For Backend (Laravel) tasks:
 ```
 #PRD.md
 #backend/API.md
 #database/schema.sql
+#database/ERD.md
 ```
 
 For Frontend tasks:
 ```
 #PRD.md
 #frontend/API.md
+#frontend/ARCHITECTURE.md
 ```
 
 For AI Service tasks:
 ```
 #PRD.md
+#ai-service/API.md
 #ai-service/ARCHITECTURE.md
 ```
 
 ## Database Tables
 
-- users: User accounts
+- users: User accounts dan authentication
 - jobs: Job positions
-- screening_sessions: Screening sessions with status tracking
-- candidates: Analyzed candidates with scores
+- screening_sessions: Screening sessions dengan status tracking
+- candidates: Analyzed candidates dengan scores dan analysis
 
-See database/ERD.md for relationships.
+Lihat database/ERD.md untuk relationships dan database/schema.sql untuk detailed schema.
+
+## Penjelasan Technical Decisions
+
+### Mengapa LangChain di AI Service?
+LangChain provides abstraction over berbagai LLM providers (OpenAI, Claude, open-source models). Ini membuat mudah untuk:
+- Switch LLM providers tanpa refactor banyak code
+- Compose complex chains dengan multiple steps
+- Manage prompts dan memory
+- Handle retries dan fallbacks
+
+### Mengapa Laravel untuk Backend?
+- Full-featured framework dengan built-in security
+- Eloquent ORM untuk database operations
+- Queue system terintegrasi untuk async jobs
+- Middleware untuk auth dan access control
+- Sudah ada support untuk JWT via packages
+
+### Qdrant dan Redis Optional?
+- Qdrant (Vector DB): Untuk RAG dan semantic search - optional untuk MVP
+- Redis: Untuk caching dan session - optional untuk MVP
+- Keduanya dapat diimplementasikan later tanpa major refactor
+
+### Frontend Stack Flexible
+Bisa pilih React, Vue, atau Next.js based on preference dan expertise.
+Mascot animations bisa pakai Framer Motion, Lottie, atau CSS animations.
+
+## Notes
+
+- Semua components berkomunikasi via REST API
+- Celery workers scalable secara horizontal
+- PostgreSQL dengan RLS untuk security
+- File storage di local filesystem atau bisa migrate ke S3 later
