@@ -16,10 +16,7 @@ build/
 
 # IDE
 .vscode/
-.idea/
-*.swp
-*.swo
-*~
+.kiro
 .DS_Store
 
 # Logs
@@ -44,24 +41,15 @@ temp/
 Thumbs.db
 
 # Documentation (keep only PRD and schema)
-.kiro/specs/temanhr/ARCHITECTURE.md
-.kiro/specs/temanhr/API.md
 backend/API.md
 backend/ARCHITECTURE.md
 frontend/API.md
 frontend/ARCHITECTURE.md
 ai-service/ARCHITECTURE.md
-.kiro/specs/temanhr/AI-PROMPT.md
 
 # Database backups
 *.sql.bak
 *.sql.backup
-
-# IDE specific files
-.project
-.classpath
-.c9/
-*.launch
 
 # API Keys and secrets (extra safety)
 **/secrets.json
