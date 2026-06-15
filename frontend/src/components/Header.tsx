@@ -1,8 +1,8 @@
 const navLinks = [
+  { label: 'Fitur', href: '#fitur' },
   { label: 'Simulasi', href: '#simulasi' },
-  { label: 'Analisa', href: '#analisa' },
-  { label: 'Screening', href: '#screening' },
   { label: 'Harga', href: '#harga' },
+  { label: 'FAQ', href: '#faq' },
 ];
 
 const Header = () => {
@@ -10,7 +10,7 @@ const Header = () => {
     <nav className="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-gray-100 shadow-sm px-6 py-4">
       <div className="max-w-6xl mx-auto flex items-center justify-between">
         <a href="/" className="text-xl font-bold text-gray-900">
-          🤖 Teman<span className="text-indigo-600">HR</span>
+          🗒️ Teman<span className="text-indigo-600">HR</span>
         </a>
         <div className="flex items-center gap-6 text-sm">
           {navLinks.map((l) => (
