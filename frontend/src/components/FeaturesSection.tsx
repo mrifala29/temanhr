@@ -1,5 +1,66 @@
 import { motion } from 'framer-motion';
 
+/* ── Data ── */
+const features = [
+  {
+    id: 'screening',
+    icon: '🏆',
+    color: 'indigo',
+    tag: 'Tersedia Sekarang',
+    tagStyle: 'bg-indigo-600 text-white',
+    title: 'Screening CV Otomatis berbasis AI',
+    desc: 'Unggah file ZIP berisi CV kandidat dalam format PDF, tentukan kriteria posisi secara detail, dan biarkan AI menganalisis serta memberikan peringkat kandidat secara otomatis. Sistem mengeluarkan skor 0–100 per kandidat beserta ringkasan profil, alasan kesesuaian, daftar keahlian, dan gap analysis — hanya dalam hitungan menit.',
+    highlights: [
+      'Skor 0–100 per kandidat',
+      'Ranking otomatis berdasarkan kesesuaian',
+      'Gap analysis & review points',
+      'Download CV asli langsung dari platform',
+    ],
+    border: 'border-indigo-100 hover:border-indigo-300',
+    iconBg: 'bg-indigo-50',
+    iconText: 'text-indigo-600',
+    checkColor: 'text-indigo-500',
+  },
+  {
+    id: 'interview-gen',
+    icon: '💬',
+    color: 'emerald',
+    tag: 'Coming Soon',
+    tagStyle: 'bg-gray-800 text-white',
+    title: 'Generate Pertanyaan Interview per Kandidat',
+    desc: 'AI membaca CV setiap kandidat yang lolos screening dan menghasilkan daftar pertanyaan interview yang spesifik, kontekstual, dan terstruktur. Rekruter dapat memvalidasi kandidat secara lebih dalam sebelum atau selama sesi wawancara, sehingga waktu interview menjadi lebih efisien dan terarah.',
+    highlights: [
+      'Pertanyaan didasarkan pada isi CV dan posisi',
+      'Terstruktur per aspek: teknis, pengalaman, soft skill',
+      'Membantu memangkas kandidat yang meragukan',
+      'Export pertanyaan ke PDF atau Word',
+    ],
+    border: 'border-emerald-100 hover:border-emerald-200',
+    iconBg: 'bg-emerald-50',
+    iconText: 'text-emerald-600',
+    checkColor: 'text-emerald-500',
+  },
+  {
+    id: 'chatbot',
+    icon: '🤖',
+    color: 'amber',
+    tag: 'Coming Soon',
+    tagStyle: 'bg-gray-800 text-white',
+    title: 'Chatbot Asisten Rekrutmen',
+    desc: 'Asisten AI yang memiliki pengetahuan penuh atas seluruh CV yang telah diunggah dan lowongan yang sedang aktif. Rekruter dapat bertanya secara natural — misalnya "siapa kandidat dengan pengalaman Python terbanyak?" — dan mendapatkan jawaban instan. Fitur ini juga mencakup kemampuan menyiapkan draf balasan email interview atau blast notifikasi ke kandidat terpilih.',
+    highlights: [
+      'Tanya-jawab bebas seputar kandidat & lowongan',
+      'Pembuatan draf balasan email interview otomatis',
+      'Blast notifikasi ke kandidat terpilih',
+      'Riwayat percakapan tersimpan per sesi rekrutmen',
+    ],
+    border: 'border-amber-100 hover:border-amber-200',
+    iconBg: 'bg-amber-50',
+    iconText: 'text-amber-600',
+    checkColor: 'text-amber-500',
+  },
+];
+
 const workflowSteps = [
   {
     icon: '📋',
@@ -18,85 +79,90 @@ const workflowSteps = [
   {
     icon: '🤖',
     title: 'AI Menganalisis Setiap CV',
-    description: 'Google Gemini AI membandingkan konten setiap CV dengan persyaratan posisi dan memberi score 0–100 per kandidat.',
+    description: 'Google Gemini AI membandingkan konten setiap CV dengan persyaratan posisi dan memberi skor 0–100 per kandidat.',
     accent: 'bg-amber-50 text-amber-500',
     badge: 'bg-amber-500',
   },
   {
     icon: '🏆',
     title: 'Kandidat Diranking Otomatis',
-    description: 'Hasil diurutkan dari score tertinggi. Hanya kandidat dengan score ≥ 60 yang ditampilkan, dibatasi sesuai ranking yang kamu tentukan.',
+    description: 'Hasil diurutkan dari skor tertinggi. Hanya kandidat dengan skor ≥ 60 yang ditampilkan, dibatasi sesuai ranking yang Anda tentukan.',
     accent: 'bg-indigo-50 text-indigo-500',
     badge: 'bg-indigo-600',
   },
   {
     icon: '📊',
     title: 'Laporan Detail per Kandidat',
-    description: 'Lihat ringkasan profil, alasan kecocokan, daftar skill, dan gap analysis. Download CV asli langsung dari platform.',
+    description: 'Lihat ringkasan profil, alasan kecocokan, daftar keahlian, dan gap analysis. Unduh CV asli langsung dari platform.',
     accent: 'bg-emerald-50 text-emerald-500',
     badge: 'bg-emerald-600',
   },
 ];
 
-const comingSoon = [
-  {
-    icon: '💬',
-    color: 'indigo',
-    title: 'Interview Question Generator',
-    description:
-      'AI membaca CV setiap kandidat dan menghasilkan daftar pertanyaan interview yang spesifik, kontekstual, dan terstruktur — siap digunakan oleh rekruter sebelum sesi wawancara dimulai. Tidak perlu riset manual lagi.',
-    highlights: ['Pertanyaan per kandidat', 'Berdasarkan CV & posisi', 'Export ke PDF / Word'],
-  },
-  {
-    icon: '📧',
-    color: 'emerald',
-    title: 'Blast Email ke Kandidat',
-    description:
-      'Kirim email undangan interview ke semua kandidat terpilih sekaligus langsung dari dashboard TemanHR. Gunakan template bawaan atau buat sendiri, lengkap dengan jadwal, lokasi, dan instruksi.',
-    highlights: ['Template profesional', 'Kirim massal 1 klik', 'Tracking status baca'],
-  },
-  {
-    icon: '📈',
-    color: 'amber',
-    title: 'Analytics & Recruitment Dashboard',
-    description:
-      'Pantau performa rekrutmen secara real-time: rata-rata score per batch, distribusi skill kandidat, tren sumber kandidat terbaik, dan waktu rata-rata proses screening. Cocok untuk laporan tim HR.',
-    highlights: ['Grafik & visualisasi data', 'Laporan per periode', 'Export CSV / Excel'],
-  },
-];
-
-const colorMap: Record<string, { bg: string; border: string; badge: string; tag: string; icon: string; highlight: string }> = {
-  indigo: {
-    bg: 'from-indigo-50/60 to-white',
-    border: 'border-indigo-100 hover:border-indigo-300',
-    badge: 'bg-indigo-600',
-    tag: 'bg-indigo-50 border-indigo-200 text-indigo-700',
-    icon: 'bg-indigo-100 text-indigo-600',
-    highlight: 'text-indigo-600',
-  },
-  emerald: {
-    bg: 'from-emerald-50/60 to-white',
-    border: 'border-emerald-100 hover:border-emerald-300',
-    badge: 'bg-emerald-600',
-    tag: 'bg-emerald-50 border-emerald-200 text-emerald-700',
-    icon: 'bg-emerald-100 text-emerald-600',
-    highlight: 'text-emerald-600',
-  },
-  amber: {
-    bg: 'from-amber-50/60 to-white',
-    border: 'border-amber-100 hover:border-amber-300',
-    badge: 'bg-amber-500',
-    tag: 'bg-amber-50 border-amber-200 text-amber-700',
-    icon: 'bg-amber-100 text-amber-600',
-    highlight: 'text-amber-600',
-  },
-};
-
 const FeaturesSection = () => {
   return (
     <>
-      {/* ── WORKFLOW STEPS ── */}
-      <section id="fitur" className="py-24 px-6 bg-white">
+      {/* ── FITUR TEMANHR ── */}
+      <section id="fitur" className="py-24 px-6 bg-gray-50" aria-labelledby="features-heading">
+        <div className="max-w-5xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-14"
+          >
+            <span className="inline-flex items-center gap-2 bg-indigo-50 border border-indigo-200 text-indigo-700 text-xs font-semibold px-4 py-1.5 rounded-full mb-4">
+              ✦ Fitur Platform
+            </span>
+            <h2 id="features-heading" className="text-3xl md:text-4xl font-bold text-gray-900 mb-3">
+              Fitur TemanHR
+            </h2>
+            <p className="text-gray-500 text-sm max-w-lg mx-auto">
+              Dari screening CV hingga persiapan interview — semua dirancang untuk memangkas waktu rekrutmen tanpa mengorbankan kualitas.
+            </p>
+          </motion.div>
+
+          <div className="flex flex-col gap-6">
+            {features.map((f, i) => (
+              <motion.div
+                key={f.id}
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1 }}
+                className={`relative bg-white border ${f.border} rounded-2xl p-7 flex flex-col md:flex-row gap-6 transition-all duration-300 hover:shadow-lg`}
+              >
+                {/* tag */}
+                <span className={`absolute top-5 right-5 text-[10px] font-bold px-2.5 py-1 rounded-full tracking-wide ${f.tagStyle}`}>
+                  {f.tag}
+                </span>
+
+                {/* icon */}
+                <div className={`flex-shrink-0 w-14 h-14 ${f.iconBg} rounded-2xl flex items-center justify-center text-3xl self-start`}>
+                  {f.icon}
+                </div>
+
+                {/* content */}
+                <div className="flex-1 pr-16 md:pr-0">
+                  <h3 className="text-base font-bold text-gray-900 mb-2">{f.title}</h3>
+                  <p className="text-sm text-gray-500 leading-relaxed mb-4">{f.desc}</p>
+                  <ul className="grid sm:grid-cols-2 gap-x-6 gap-y-1.5">
+                    {f.highlights.map((h, j) => (
+                      <li key={j} className="flex items-center gap-2 text-xs text-gray-500">
+                        <span className={`font-bold flex-shrink-0 ${f.checkColor}`}>✓</span>
+                        {h}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── ALUR KERJA ── */}
+      <section id="cara-kerja" className="py-24 px-6 bg-white" aria-labelledby="workflow-heading">
         <div className="max-w-3xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 16 }}
@@ -105,9 +171,11 @@ const FeaturesSection = () => {
             transition={{ duration: 0.5 }}
             className="text-center mb-14"
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-3">Alur Kerja TemanHR</h2>
+            <h2 id="workflow-heading" className="text-3xl md:text-4xl font-bold text-gray-900 mb-3">
+              Alur Kerja TemanHR
+            </h2>
             <p className="text-gray-500 text-sm max-w-md mx-auto">
-              Dari upload hingga hasil ranking — 5 langkah yang terjadi otomatis.
+              Dari unggah CV hingga hasil ranking — 5 langkah yang terjadi secara otomatis.
             </p>
           </motion.div>
 
@@ -134,78 +202,6 @@ const FeaturesSection = () => {
               </motion.div>
             ))}
           </div>
-        </div>
-      </section>
-
-      {/* ── COMING SOON FEATURES ── */}
-      <section id="coming-soon" className="py-24 px-6 bg-gray-50">
-        <div className="max-w-5xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center mb-14"
-          >
-            <span className="inline-flex items-center gap-2 bg-indigo-50 border border-indigo-200 text-indigo-700 text-xs font-semibold px-4 py-1.5 rounded-full mb-4">
-              🚀 Segera Hadir
-            </span>
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-3">Fitur yang Akan Datang</h2>
-            <p className="text-gray-500 text-sm max-w-lg mx-auto">
-              Kami terus mengembangkan TemanHR agar rekruter bisa mengelola seluruh proses rekrutmen dari satu tempat.
-            </p>
-          </motion.div>
-
-          <div className="grid md:grid-cols-3 gap-6">
-            {comingSoon.map((f, i) => {
-              const c = colorMap[f.color];
-              return (
-                <motion.div
-                  key={i}
-                  initial={{ opacity: 0, y: 24 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: i * 0.1 }}
-                  className={`relative bg-gradient-to-b ${c.bg} border ${c.border} rounded-2xl p-6 flex flex-col gap-4 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg`}
-                >
-                  {/* Coming Soon badge */}
-                  <span className="absolute top-4 right-4 text-[10px] font-bold bg-gray-900 text-white px-2.5 py-1 rounded-full tracking-wide">
-                    Coming Soon
-                  </span>
-
-                  {/* Icon */}
-                  <div className={`w-12 h-12 ${c.icon} rounded-xl flex items-center justify-center text-2xl`}>
-                    {f.icon}
-                  </div>
-
-                  {/* Title & desc */}
-                  <div>
-                    <h3 className="text-base font-bold text-gray-900 mb-2 pr-20">{f.title}</h3>
-                    <p className="text-sm text-gray-500 leading-relaxed">{f.description}</p>
-                  </div>
-
-                  {/* Highlights */}
-                  <ul className="flex flex-col gap-1.5 mt-auto">
-                    {f.highlights.map((h, j) => (
-                      <li key={j} className="flex items-center gap-2 text-xs text-gray-500">
-                        <span className={`font-bold ${c.highlight}`}>✓</span>
-                        {h}
-                      </li>
-                    ))}
-                  </ul>
-                </motion.div>
-              );
-            })}
-          </div>
-
-          <motion.p
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.4 }}
-            className="text-center text-xs text-gray-400 mt-10"
-          >
-            Ingin fitur ini lebih cepat hadir? <a href="#" className="text-indigo-600 font-medium hover:underline">Beritahu kami</a> atau <a href="#harga" className="text-indigo-600 font-medium hover:underline">upgrade ke Pro</a> untuk akses early.
-          </motion.p>
         </div>
       </section>
     </>

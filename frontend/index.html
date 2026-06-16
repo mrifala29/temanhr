@@ -4,26 +4,121 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    
-    <!-- SEO Meta Tags -->
-    <title>TemanHR - AI CV Screening untuk Rekrutmen Efisien</title>
-    <meta name="description" content="Platform AI untuk screening CV kandidat secara otomatis. Upload CV, tentukan kriteria, dapatkan kandidat terbaik dengan scoring AI. Hemat waktu rekrutmen Anda." />
-    <meta name="keywords" content="AI screening CV, rekrutmen, HR tech, CV analysis, kandidat terbaik, AI recruitment" />
+
+    <!-- Primary SEO -->
+    <title>TemanHR — Platform AI Screening CV Kandidat Otomatis untuk Rekruter Indonesia</title>
+    <meta name="description" content="TemanHR adalah platform AI berbasis Google Gemini untuk screening CV kandidat secara otomatis. Upload CV ZIP, tentukan kriteria posisi, dan dapatkan ranking kandidat terbaik lengkap dengan skor, gap analysis, dan laporan detail — dalam hitungan menit." />
+    <meta name="keywords" content="screening CV otomatis, AI rekrutmen, platform HR Indonesia, ranking kandidat AI, analisis CV, seleksi CV kecerdasan buatan, software rekrutmen, HR tech Indonesia, shortlisting kandidat, TemanHR" />
     <meta name="author" content="TemanHR" />
-    
-    <!-- Open Graph / Facebook -->
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://temanhr.id/" />
+
+    <!-- Open Graph (Facebook, LinkedIn, WhatsApp) -->
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="TemanHR - AI CV Screening" />
-    <meta property="og:description" content="Platform AI untuk screening CV kandidat secara otomatis. Hemat waktu rekrutmen Anda." />
-    <meta property="og:image" content="/og-image.png" />
-    
-    <!-- Twitter -->
+    <meta property="og:site_name" content="TemanHR" />
+    <meta property="og:url" content="https://temanhr.id/" />
+    <meta property="og:title" content="TemanHR — Screening CV Kandidat Otomatis dengan AI" />
+    <meta property="og:description" content="Hemat waktu rekrutmen hingga 10×. Upload CV dalam ZIP, tentukan kriteria posisi, dan dapatkan ranking kandidat terbaik secara otomatis menggunakan kecerdasan buatan." />
+    <meta property="og:image" content="https://temanhr.id/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:locale" content="id_ID" />
+
+    <!-- Twitter / X Card -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="TemanHR - AI CV Screening" />
-    <meta name="twitter:description" content="Platform AI untuk screening CV kandidat secara otomatis." />
-    
-    <!-- Theme Color -->
+    <meta name="twitter:site" content="@temanhr" />
+    <meta name="twitter:title" content="TemanHR — Screening CV Otomatis dengan AI" />
+    <meta name="twitter:description" content="Platform AI untuk rekruter Indonesia. Screening ratusan CV dalam hitungan menit. Ranking kandidat, gap analysis, dan laporan detail tersedia seketika." />
+    <meta name="twitter:image" content="https://temanhr.id/og-image.png" />
+
+    <!-- Structured Data: SoftwareApplication -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "TemanHR",
+      "url": "https://temanhr.id",
+      "description": "Platform AI untuk screening CV kandidat secara otomatis. Rekruter dapat mengunggah CV dalam format ZIP, menentukan kriteria posisi, dan mendapatkan ranking kandidat terbaik beserta laporan analisis mendalam.",
+      "applicationCategory": "BusinessApplication",
+      "operatingSystem": "Web",
+      "inLanguage": "id-ID",
+      "offers": [
+        {
+          "@type": "Offer",
+          "name": "Starter",
+          "price": "0",
+          "priceCurrency": "IDR",
+          "description": "3 sesi screening per bulan, maksimal 10 CV per sesi"
+        },
+        {
+          "@type": "Offer",
+          "name": "Pro",
+          "price": "149000",
+          "priceCurrency": "IDR",
+          "billingIncrement": "P1M",
+          "description": "Unlimited sesi, maksimal 50 CV per sesi, riwayat tersimpan"
+        }
+      ]
+    }
+    </script>
+
+    <!-- Structured Data: Organization -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "TemanHR",
+      "url": "https://temanhr.id",
+      "logo": "https://temanhr.id/favicon.svg",
+      "sameAs": []
+    }
+    </script>
+
+    <!-- Structured Data: FAQPage -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Format file apa saja yang didukung TemanHR?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "CV harus dalam format PDF, dikemas dalam satu file ZIP. Sistem akan otomatis mengekstrak dan memvalidasi setiap file di dalamnya."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Berapa banyak CV yang bisa diupload sekaligus di TemanHR?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Paket Starter mendukung maksimal 10 CV per sesi, Paket Pro hingga 50 CV, dan Paket Enterprise tidak terbatas."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Bagaimana AI TemanHR menentukan skor kandidat?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "AI menganalisis setiap CV dan membandingkannya dengan persyaratan posisi yang dimasukkan rekruter — meliputi pendidikan, pengalaman kerja, keahlian/tools, dan sertifikasi. Skor 0–100 diberikan berdasarkan tingkat kesesuaian tersebut."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Apakah TemanHR gratis?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Ya, Paket Starter tersedia gratis dengan 3 sesi screening per bulan dan maksimal 10 CV per sesi, tanpa memerlukan data kartu kredit."
+          }
+        }
+      ]
+    }
+    </script>
+
+    <!-- Theme & Performance -->
     <meta name="theme-color" content="#6366F1" />
+    <meta name="format-detection" content="telephone=no" />
   </head>
   <body>
     <div id="root"></div>

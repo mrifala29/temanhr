@@ -1,5 +1,6 @@
 import Header from '../components/Header';
 import HeroSection from '../components/HeroSection';
+import AboutSection from '../components/AboutSection';
 import FeaturesSection from '../components/FeaturesSection';
 import SimulasiSection from '../components/SimulasiSection';
 import PricingSection from '../components/PricingSection';
@@ -11,6 +12,7 @@ const LandingPage = () => {
     <div className="min-h-screen bg-white">
       <Header />
       <HeroSection />
+      <AboutSection />
       <FeaturesSection />
       <SimulasiSection />
       <PricingSection />
